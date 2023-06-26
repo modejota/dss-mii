@@ -1,0 +1,117 @@
+<bpel:process name="BuscaVueloVueling" targetNamespace="http://buscaVueloVueling" suppressJoinFailure="yes"
+              xmlns:tns="http://buscaVueloVueling" xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xml:id="id_1" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://comparador">
+  <!-- Import the client WSDL -->
+  <bpel:import location="BuscaVueloVuelingArtifacts.wsdl" namespace="http://buscaVueloVueling"
+               importType="http://schemas.xmlsoap.org/wsdl/" xml:id="id_2"/>
+  <!-- ================================================================= -->
+  <!-- PARTNERLINKS                                                      -->
+  <!-- List of services participating in this BPEL process               -->
+  <!-- ================================================================= -->
+  <bpel:partnerLinks xml:id="id_3">
+    <!-- The 'client' role represents the requester of this service. -->
+    <bpel:partnerLink name="client" partnerLinkType="ns1:VuelingPT" myRole="VuelingR" xml:id="id_4"/>
+  </bpel:partnerLinks>
+  <!-- ================================================================= -->
+  <!-- VARIABLES                                                         -->
+  <!-- List of messages and XML documents used within this BPEL process  -->
+  <!-- ================================================================= -->
+  <bpel:variables xml:id="id_5">
+    <!-- Reference to the message passed as input during initiation -->
+    <bpel:variable name="input" messageType="tns:BuscaVueloVuelingRequestMessage" xml:id="id_6"/>
+    <!-- Reference to the message that will be returned to the requester -->
+    <bpel:variable name="output" messageType="tns:BuscaVueloVuelingResponseMessage" xml:id="id_7"/>
+  </bpel:variables>
+  <!-- ================================================================= -->
+  <!-- ORCHESTRATION LOGIC                                               -->
+  <!-- Set of activities coordinating the flow of messages across the    -->
+  <!-- services integrated within this business process                  -->
+  <!-- ================================================================= -->
+  <bpel:sequence name="main" xml:id="id_8">
+    <!-- Receive input from requester. Note: This maps to operation defined in BuscaVueloVueling.wsdl -->
+    <bpel:receive name="receiveInput" partnerLink="client" portType="tns:BuscaVueloVueling" operation="process"
+                  variable="input" createInstance="yes" xml:id="id_9"/>
+    <!-- Generate reply to synchronous request -->
+    <bpel:if name="ComparaClase" xml:id="id_10">
+      <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_11">
+        <![CDATA[$input.payload/tns:clase="business"]]>
+      </bpel:condition>
+      <bpel:assign validate="no" name="Assign1" xml:id="id_12">
+        <bpel:copy xml:id="id_13">
+          <bpel:from xml:id="id_14">
+            <bpel:literal xml:space="preserve" xml:id="id_15">
+              <tns:BuscaVueloVuelingResponse xmlns:tns="http://buscaVueloVueling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_16">
+                <tns:precio xml:id="id_17">259.99</tns:precio>
+              </tns:BuscaVueloVuelingResponse>
+            </bpel:literal>
+          </bpel:from>
+          <bpel:to variable="output" part="payload" xml:id="id_18"></bpel:to>
+        </bpel:copy>
+      </bpel:assign>
+      <bpel:elseif xml:id="id_19">
+        <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_20">
+          <![CDATA[$input.payload/tns:clase="privado"]]>
+        </bpel:condition>
+        <bpel:assign validate="no" name="Assign" xml:id="id_21">
+          <bpel:copy xml:id="id_22">
+            <bpel:from xml:id="id_23">
+              <bpel:literal xml:space="preserve" xml:id="id_24">
+                <tns:BuscaVueloVuelingResponse xmlns:tns="http://buscaVueloVueling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_25">
+                  <tns:precio xml:id="id_26">1000.0</tns:precio>
+                </tns:BuscaVueloVuelingResponse>
+              </bpel:literal>
+            </bpel:from>
+            <bpel:to variable="output" part="payload" xml:id="id_27"></bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:elseif>
+      <bpel:else xml:id="id_28">
+        <bpel:assign validate="no" name="Assign2" xml:id="id_29">
+          <bpel:copy xml:id="id_30">
+            <bpel:from xml:id="id_31">
+              <bpel:literal xml:space="preserve" xml:id="id_32">
+                <tns:BuscaVueloVuelingResponse xmlns:tns="http://buscaVueloVueling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_33">
+                  <tns:precio xml:id="id_34">34.64</tns:precio>
+                </tns:BuscaVueloVuelingResponse>
+              </bpel:literal>
+            </bpel:from>
+            <bpel:to variable="output" part="payload" xml:id="id_35"></bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:else>
+    </bpel:if>
+    <bpel:if name="ComparaDestino" xml:id="id_36">
+      <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_37">
+        <![CDATA[$input.payload/tns:destino="Granada"or$input.payload/tns:destino="Malaga"or$input.payload/tns:destino="Sevilla"]]>
+      </bpel:condition>
+      <bpel:assign name="Assign3" xml:id="id_38">
+        <bpel:copy>
+          <bpel:from>$input.payload</bpel:from>
+          <bpel:to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$output.payload</bpel:to>
+        </bpel:copy>
+      </bpel:assign>
+      <bpel:elseif xml:id="id_43">
+        <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_44">
+          <![CDATA[$input.payload/tns:destino="Madrid"or$input.payload/tns:destino="Barcelona"or$input.payload/tns:destino="Oviedo"]]>
+        </bpel:condition>
+        <bpel:assign name="Assign4" xml:id="id_45">
+          <bpel:copy>
+            <bpel:from>$input.payload</bpel:from>
+            <bpel:to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$output.payload</bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:elseif>
+      <bpel:else xml:id="id_50">
+        <bpel:assign name="Assign5" xml:id="id_51">
+          <bpel:copy>
+            <bpel:from>$input.payload</bpel:from>
+            <bpel:to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$output.payload</bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:else>
+    </bpel:if>
+    <bpel:reply name="replyOutput" partnerLink="client" portType="tns:BuscaVueloVueling" operation="process"
+                variable="output" xml:id="id_56"/>
+  </bpel:sequence>
+</bpel:process>
+

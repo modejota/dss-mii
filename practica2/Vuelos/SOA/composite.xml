@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<composite name="Vuelos"
+           revision="1.0"
+           label="2023-01-03_12-49-41_099"
+           mode="active"
+           state="on"
+           xmlns="http://xmlns.oracle.com/sca/1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+           xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
+           xmlns:ui="http://xmlns.oracle.com/soa/designer/"
+           xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://comparador" location="WSDLs/ComparadorArtifacts.wsdl" importType="wsdl"/>
+  
+  <service name="Comparador_client_ep" ui:wsdlLocation="WSDLs/ComparadorArtifacts.wsdl">
+    <interface.wsdl interface="http://comparador#wsdl.interface(Comparador)"/>
+    <binding.ws port="http://comparador#wsdl.endpoint(Comparador_client_ep/Comparador_pt)"/>
+  </service>
+  
+  <property name="productVersion" type="xs:string" many="false">12.2.1.4.0.190828</property>
+  <property name="compositeID" type="xs:string" many="false">78e0006a-65b5-492c-8c8e-63475fd0956f</property>
+  
+  <component name="Comparador" version="2.0">
+    <implementation.bpel src="BPEL/Comparador.bpel"/>
+    <componentType>
+      <service name="Comparador_client" ui:wsdlLocation="WSDLs/ComparadorArtifacts.wsdl">
+        <interface.wsdl interface="http://comparador#wsdl.interface(Comparador)"/>
+      </service>
+    </componentType>
+  </component>
+  
+  <wire>
+    <source.uri>Comparador_client_ep</source.uri>
+    <target.uri>Comparador/Comparador_client</target.uri>
+  </wire>
+</composite>

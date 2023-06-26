@@ -1,0 +1,223 @@
+<bpel:process name="Comparador" targetNamespace="http://comparador" suppressJoinFailure="yes"
+              xmlns:tns="http://comparador" xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xmlns:ns="http://seleccionarClase" xmlns:ns0="http://buscaVueloIberia"
+              xmlns:ns1="http://buscaVueloVueling" xml:id="id_1" xmlns:bpelx="http://schemas.oracle.com/bpel/extension">
+  <!-- Import the client WSDL -->
+  <bpel:import location="ComparadorArtifacts.wsdl" namespace="http://comparador"
+               importType="http://schemas.xmlsoap.org/wsdl/" xml:id="id_2"/>
+  <!-- ================================================================= -->
+  <!-- PARTNERLINKS                                                      -->
+  <!-- List of services participating in this BPEL process               -->
+  <!-- ================================================================= -->
+  <bpel:partnerLinks xml:id="id_3">
+    <!-- The 'client' role represents the requester of this service. -->
+    <bpel:partnerLink name="client" partnerLinkType="tns:Comparador" myRole="ComparadorProvider" xml:id="id_4"/>
+    <bpel:partnerLink name="EmpleadoPL" partnerLinkType="ns:SeleccionarClase" partnerRole="SeleccionarClaseProvider"
+                      xml:id="id_5"/>
+    <bpel:partnerLink name="IberiaPL" partnerLinkType="ns0:BuscaVueloIberia" partnerRole="BuscaVueloIberiaProvider"
+                      xml:id="id_6"/>
+    <bpel:partnerLink name="VuelingPL" partnerLinkType="ns1:BuscaVueloVueling" partnerRole="BuscaVueloVuelingProvider"
+                      xml:id="id_7"/>
+  </bpel:partnerLinks>
+  <!-- ================================================================= -->
+  <!-- VARIABLES                                                         -->
+  <!-- List of messages and XML documents used within this BPEL process  -->
+  <!-- ================================================================= -->
+  <bpel:variables xml:id="id_8">
+    <!-- Reference to the message passed as input during initiation -->
+    <bpel:variable name="input" messageType="tns:ComparadorRequestMessage" xml:id="id_9"/>
+    <!-- Reference to the message that will be returned to the requester -->
+    <bpel:variable name="output" messageType="tns:ComparadorResponseMessage" xml:id="id_10"/>
+    <bpel:variable name="IberiaPLResponse" messageType="ns0:BuscaVueloIberiaResponseMessage" xml:id="id_11"/>
+    <bpel:variable name="IberiaPLRequest" messageType="ns0:BuscaVueloIberiaRequestMessage" xml:id="id_12"/>
+    <bpel:variable name="VuelingPLResponse" messageType="ns1:BuscaVueloVuelingResponseMessage" xml:id="id_13"/>
+    <bpel:variable name="VuelingPLRequest" messageType="ns1:BuscaVueloVuelingRequestMessage" xml:id="id_14"/>
+    <bpel:variable name="EmpleadoPLResponse" messageType="ns:SeleccionarClaseResponseMessage" xml:id="id_15"/>
+    <bpel:variable name="EmpleadoPLRequest" messageType="ns:SeleccionarClaseRequestMessage" xml:id="id_16"/>
+  </bpel:variables>
+  <!-- ================================================================= -->
+  <!-- ORCHESTRATION LOGIC                                               -->
+  <!-- Set of activities coordinating the flow of messages across the    -->
+  <!-- services integrated within this business process                  -->
+  <!-- ================================================================= -->
+  <bpel:sequence name="main" xml:id="id_17">
+    <!-- Receive input from requester. Note: This maps to operation defined in Comparador.wsdl -->
+    <bpel:receive name="receiveInput" partnerLink="client" portType="tns:Comparador" operation="process"
+                  variable="input" createInstance="yes" xml:id="id_18"/>
+    <!-- Generate reply to synchronous request -->
+    <bpel:assign validate="no" name="Assign" xml:id="id_19">
+      <bpel:copy xml:id="id_20">
+        <bpel:from xml:id="id_21">
+          <bpel:literal xml:id="id_22">
+            <tns:SeleccionarClaseRequest xmlns:tns="http://seleccionarClase" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_23">
+              <tns:nombre xml:id="id_24">tns:nombre</tns:nombre>
+            </tns:SeleccionarClaseRequest>
+          </bpel:literal>
+        </bpel:from>
+        <bpel:to variable="EmpleadoPLRequest" part="payload" xml:id="id_25"></bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_26">
+        <bpel:from part="payload" variable="input" xml:id="id_27">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_28"><![CDATA[tns:nombre]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="EmpleadoPLRequest" xml:id="id_29">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_30"><![CDATA[ns:nombre]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+    </bpel:assign>
+    <bpel:invoke name="Invoke" partnerLink="EmpleadoPL" operation="process" portType="ns:SeleccionarClase"
+                 inputVariable="EmpleadoPLRequest" outputVariable="EmpleadoPLResponse" xml:id="id_31"></bpel:invoke>
+    <bpel:assign validate="no" name="Assign2" xml:id="id_32">
+      <bpel:copy xml:id="id_33">
+        <bpel:from xml:id="id_34">
+          <bpel:literal xml:id="id_35">
+            <tns:BuscaVueloIberiaRequest xmlns:tns="http://buscaVueloIberia"
+                                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_36">
+              <tns:clase xml:id="id_37">tns:clase</tns:clase>
+              <tns:destino xml:id="id_38">tns:destino</tns:destino>
+              <tns:fechaSalida xml:id="id_39">2023-12-01</tns:fechaSalida>
+              <tns:fechaLlegada xml:id="id_40">2023-16-01</tns:fechaLlegada>
+            </tns:BuscaVueloIberiaRequest>
+          </bpel:literal>
+        </bpel:from>
+        <bpel:to variable="IberiaPLRequest" part="payload" xml:id="id_41"/>
+      </bpel:copy>
+      <bpel:copy xml:id="id_42">
+        <bpel:from part="payload" variable="EmpleadoPLResponse" xml:id="id_43">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_44"><![CDATA[ns:clase]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="IberiaPLRequest" xml:id="id_45">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_46"><![CDATA[ns0:clase]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_47">
+        <bpel:from part="payload" variable="input" xml:id="id_48">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_49"><![CDATA[tns:destino]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="IberiaPLRequest" xml:id="id_50">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_51"><![CDATA[ns0:destino]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_52">
+        <bpel:from part="payload" variable="input" xml:id="id_53">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_54"><![CDATA[tns:fechaSalida]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="IberiaPLRequest" xml:id="id_55">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_56"><![CDATA[ns0:fechaSalida]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_57">
+        <bpel:from part="payload" variable="input" xml:id="id_58">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_59"><![CDATA[tns:fechaLlegada]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="IberiaPLRequest" xml:id="id_60">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_61"><![CDATA[ns0:fechaLlegada]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+    </bpel:assign>
+    <bpel:invoke name="Invoke1" partnerLink="IberiaPL" operation="process" portType="ns0:BuscaVueloIberia"
+                 inputVariable="IberiaPLRequest" outputVariable="IberiaPLResponse" xml:id="id_62"/>
+    <bpel:assign validate="no" name="Assign4" xml:id="id_63">
+      <bpel:copy xml:id="id_64">
+        <bpel:from xml:id="id_65">
+          <bpel:literal xml:id="id_66">
+            <tns:BuscaVueloVuelingRequest xmlns:tns="http://buscaVueloVueling"
+                                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_67">
+              <tns:clase xml:id="id_68">tns:clase</tns:clase>
+              <tns:destino xml:id="id_69">tns:destino</tns:destino>
+              <tns:fechaSalida xml:id="id_70">2023-12-01</tns:fechaSalida>
+              <tns:fechaLlegada xml:id="id_71">2001-16-01</tns:fechaLlegada>
+            </tns:BuscaVueloVuelingRequest>
+          </bpel:literal>
+        </bpel:from>
+        <bpel:to variable="VuelingPLRequest" part="payload" xml:id="id_72"></bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_73">
+        <bpel:from part="payload" variable="EmpleadoPLResponse" xml:id="id_74">
+         <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_75"><![CDATA[ns:clase]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="VuelingPLRequest" xml:id="id_76">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_77"><![CDATA[ns1:clase]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_78">
+        <bpel:from part="payload" variable="input" xml:id="id_79">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_80"><![CDATA[tns:destino]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="VuelingPLRequest" xml:id="id_81">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_82"><![CDATA[ns1:destino]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_83">
+        <bpel:from part="payload" variable="input" xml:id="id_84">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_85"><![CDATA[tns:fechaSalida]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="VuelingPLRequest" xml:id="id_86">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_87"><![CDATA[ns1:fechaSalida]]></bpel:query>
+         </bpel:to>
+      </bpel:copy>
+      <bpel:copy xml:id="id_88">
+        <bpel:from part="payload" variable="input" xml:id="id_89">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_90"><![CDATA[tns:fechaLlegada]]></bpel:query>
+        </bpel:from>
+        <bpel:to part="payload" variable="VuelingPLRequest" xml:id="id_91">
+          <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_92"><![CDATA[ns1:fechaLlegada]]></bpel:query>
+        </bpel:to>
+      </bpel:copy>
+    </bpel:assign>
+    <bpel:invoke name="Invoke2" partnerLink="VuelingPL" operation="process" portType="ns1:BuscaVueloVueling"
+                 inputVariable="VuelingPLRequest" outputVariable="VuelingPLResponse" xml:id="id_93"></bpel:invoke>
+    <bpel:if name="If" xml:id="id_94">
+      <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_95">
+        <![CDATA[($IberiaPLResponse.payload/ns0:precio)-($VuelingPLResponse.payload/ns1:precio)<=0]]>
+      </bpel:condition>
+      <bpel:assign validate="no" name="Assign1" xml:id="id_96">
+        <bpel:copy xml:id="id_97">
+          <bpel:from xml:id="id_98">
+            <bpel:literal xml:space="preserve" xml:id="id_99">
+              <tns:ComparadorResponse xmlns:tns="http://comparador" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_100">
+                <tns:aerolinea xml:id="id_101">Iberia</tns:aerolinea>
+                <tns:precio xml:id="id_102">0.0</tns:precio>
+              </tns:ComparadorResponse>
+            </bpel:literal>
+          </bpel:from>
+          <bpel:to variable="output" part="payload" xml:id="id_103"></bpel:to>
+        </bpel:copy>
+        <bpel:copy xml:id="id_104">
+          <bpel:from part="payload" variable="IberiaPLResponse" xml:id="id_105">
+            <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_106"><![CDATA[ns0:precio]]></bpel:query>
+          </bpel:from>
+          <bpel:to part="payload" variable="output" xml:id="id_107">
+            <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_108"><![CDATA[tns:precio]]></bpel:query>
+          </bpel:to>
+        </bpel:copy>
+      </bpel:assign>
+      <bpel:else xml:id="id_109">
+        <bpel:assign validate="no" name="Assign3" xml:id="id_110">
+          <bpel:copy xml:id="id_111">
+            <bpel:from xml:id="id_112">
+              <bpel:literal xml:space="preserve" xml:id="id_113">
+                <tns:ComparadorResponse xmlns:tns="http://comparador" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_114">
+                  <tns:aerolinea xml:id="id_115">Vueling</tns:aerolinea>
+                  <tns:precio xml:id="id_116">0.0</tns:precio>
+                </tns:ComparadorResponse>
+              </bpel:literal>
+            </bpel:from>
+            <bpel:to variable="output" part="payload" xml:id="id_117"></bpel:to>
+          </bpel:copy>
+          <bpel:copy xml:id="id_118">
+            <bpel:from part="payload" variable="VuelingPLResponse" xml:id="id_119">
+              <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_120"><![CDATA[ns1:precio]]></bpel:query>
+            </bpel:from>
+            <bpel:to part="payload" variable="output" xml:id="id_121">
+              <bpel:query queryLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_122"><![CDATA[tns:precio]]></bpel:query>
+            </bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:else>
+    </bpel:if>
+    <bpel:reply name="replyOutput" partnerLink="client" portType="tns:Comparador" operation="process" variable="output"
+                xml:id="id_123"/>
+  </bpel:sequence>
+</bpel:process>
+

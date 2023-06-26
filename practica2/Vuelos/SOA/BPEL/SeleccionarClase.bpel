@@ -1,0 +1,96 @@
+<bpel:process name="SeleccionarClase" targetNamespace="http://seleccionarClase" suppressJoinFailure="yes"
+              xmlns:tns="http://seleccionarClase" xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+              xml:id="id_1" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns1="http://comparador">
+  <!-- Import the client WSDL -->
+  <bpel:import location="SeleccionarClaseArtifacts.wsdl" namespace="http://seleccionarClase"
+               importType="http://schemas.xmlsoap.org/wsdl/" xml:id="id_2"/>
+  <!-- ================================================================= -->
+  <!-- PARTNERLINKS                                                      -->
+  <!-- List of services participating in this BPEL process               -->
+  <!-- ================================================================= -->
+  <bpel:partnerLinks xml:id="id_3">
+    <!-- The 'client' role represents the requester of this service. -->
+    <bpel:partnerLink name="client" partnerLinkType="ns1:EmpleadoPT" myRole="EmpleadoR" xml:id="id_4"/>
+  </bpel:partnerLinks>
+  <!-- ================================================================= -->
+  <!-- VARIABLES                                                         -->
+  <!-- List of messages and XML documents used within this BPEL process  -->
+  <!-- ================================================================= -->
+  <bpel:variables xml:id="id_5">
+    <!-- Reference to the message passed as input during initiation -->
+    <bpel:variable name="input" messageType="tns:SeleccionarClaseRequestMessage" xml:id="id_6"/>
+    <!-- Reference to the message that will be returned to the requester -->
+    <bpel:variable name="output" messageType="tns:SeleccionarClaseResponseMessage" xml:id="id_7"/>
+  </bpel:variables>
+  <!-- ================================================================= -->
+  <!-- ORCHESTRATION LOGIC                                               -->
+  <!-- Set of activities coordinating the flow of messages across the    -->
+  <!-- services integrated within this business process                  -->
+  <!-- ================================================================= -->
+  <bpel:sequence name="main" xml:id="id_8">
+    <!-- Receive input from requester. Note: This maps to operation defined in SeleccionarClase.wsdl -->
+    <bpel:receive name="receiveInput" partnerLink="client" portType="tns:SeleccionarClase" operation="process"
+                  variable="input" createInstance="yes" xml:id="id_9"/>
+    <!-- Generate reply to synchronous request -->
+    <bpel:if name="If" xml:id="id_10">
+      <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_11">
+        <![CDATA[$input.payload/tns:nombre="Jose Alberto"]]>
+      </bpel:condition>
+      <bpel:sequence xml:id="id_12">
+        <bpel:assign validate="no" name="Assign" xml:id="id_13">
+          <bpel:copy xml:id="id_14">
+            <bpel:from xml:id="id_15">
+              <bpel:literal xml:space="preserve" xml:id="id_16">
+                <tns:SeleccionarClaseResponse xmlns:tns="http://seleccionarClase"
+                                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_17">
+                  <tns:clase xml:id="id_18">business</tns:clase>
+                </tns:SeleccionarClaseResponse>
+              </bpel:literal>
+            </bpel:from>
+            <bpel:to variable="output" part="payload" xml:id="id_19"></bpel:to>
+          </bpel:copy>
+        </bpel:assign>
+      </bpel:sequence>
+      <bpel:elseif xml:id="id_20">
+        <bpel:condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0" xml:id="id_21">
+          <![CDATA[$input.payload/tns:nombre="Manuel"]]>
+        </bpel:condition>
+        <bpel:sequence name="Sequence" xml:id="id_22">
+          <bpel:assign validate="no" name="Assign" xml:id="id_23">
+            <bpel:copy xml:id="id_24">
+              <bpel:from xml:id="id_25">
+                <bpel:literal xml:space="preserve" xml:id="id_26">
+                  <tns:SeleccionarClaseResponse xmlns:tns="http://seleccionarClase"
+                                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_27">
+                    <tns:clase xml:id="id_28">privado</tns:clase>
+                  </tns:SeleccionarClaseResponse>
+                </bpel:literal>
+              </bpel:from>
+              <bpel:to variable="output" part="payload" xml:id="id_29"></bpel:to>
+            </bpel:copy>
+          </bpel:assign>
+        </bpel:sequence>
+      </bpel:elseif>
+      <bpel:else xml:id="id_30">
+        <bpel:sequence name="Sequence" xml:id="id_31">
+          <bpel:assign validate="no" name="Assign" xml:id="id_32">
+            <bpel:copy xml:id="id_33">
+              <bpel:from xml:id="id_34">
+                <bpel:literal xml:space="preserve" xml:id="id_35">
+                  <tns:SeleccionarClaseResponse xmlns:tns="http://seleccionarClase"
+                                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:id="id_36">
+                    <tns:clase xml:id="id_37">turista</tns:clase>
+                  </tns:SeleccionarClaseResponse>
+                </bpel:literal>
+              </bpel:from>
+              <bpel:to variable="output" part="payload" xml:id="id_38"></bpel:to>
+            </bpel:copy>
+          </bpel:assign>
+        </bpel:sequence>
+      </bpel:else>
+    </bpel:if>
+    <bpel:reply name="replyOutput" partnerLink="client" portType="tns:SeleccionarClase" operation="process"
+                variable="output" xml:id="id_39"/>
+  </bpel:sequence>
+</bpel:process>
+
