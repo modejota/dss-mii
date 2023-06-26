@@ -1,0 +1,904 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/GomezGarciaJoseAlberto/ontologies/vehicles.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/GomezGarciaJoseAlberto/ontologies/vehicles.owl">
+    <Prefix name="" IRI="http://www.semanticweb.org/GomezGarciaJoseAlberto/ontologies/vehicles.owl"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Berlina"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Boxer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Buses"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cabin"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Camper"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cars"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chassis"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chrysler"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Commercial"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Convertible"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CostValuePartition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Costly-vehicle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Coupé"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Expensive"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#In-line"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Low-cost"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Medium-cost"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mercedes"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Motor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Motorhome"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pickup-truck"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Rotary"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SUV"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Straignt"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Trucks"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VEE"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vans"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Wheels"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#alloy"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#bus-frame"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#car-chassis"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#chrome"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#high-speed"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#many-seats"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#parts"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#sporty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#steel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#summer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#touring"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#truck-chassis"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#tyre"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#van-chassis"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#vehicle"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#wheel-rim"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#winter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#2-seats"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#5-seats"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#8-seats"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VR&amp;W"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#areWheelsOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasCabin"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasChassis"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasMotor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPart"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasWheels"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isCabinOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isChassisOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isExpensive"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isMotorOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isPartOf"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasMaintenanceCostPerYear"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasPrice"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#CostValuePartition"/>
+        <ObjectUnionOf>
+            <Class IRI="#Expensive"/>
+            <Class IRI="#Low-cost"/>
+            <Class IRI="#Medium-cost"/>
+        </ObjectUnionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Costly-vehicle"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#vehicle"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasPrice"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:float"/>
+                    <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">60000.0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#vehicle"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasCabin"/>
+                <Class IRI="#Cabin"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasMotor"/>
+                <Class IRI="#Motor"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasWheels"/>
+                <Class IRI="#Wheels"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#isExpensive"/>
+                <Class IRI="#CostValuePartition"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Berlina"/>
+        <Class IRI="#Cars"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Berlina"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">40000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxer"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Boxer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Medium-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Buses"/>
+        <Class IRI="#vehicle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Buses"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasCabin"/>
+            <Class IRI="#many-seats"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Buses"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasChassis"/>
+            <Class IRI="#bus-frame"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cabin"/>
+        <Class IRI="#parts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Camper"/>
+        <Class IRI="#Vans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Camper"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">28000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cars"/>
+        <Class IRI="#vehicle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cars"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasChassis"/>
+            <Class IRI="#car-chassis"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chassis"/>
+        <Class IRI="#parts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chrysler"/>
+        <Class IRI="#Commercial"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chrysler"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasCabin"/>
+            <Class IRI="#8-seats"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chrysler"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasWheels"/>
+            <Class IRI="#steel"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chrysler"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Medium-cost"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Commercial"/>
+        <Class IRI="#Vans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Commercial"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">15000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Convertible"/>
+        <Class IRI="#Cars"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Convertible"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">32000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Costly-vehicle"/>
+        <Class IRI="#vehicle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Coupé"/>
+        <Class IRI="#Cars"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Coupé"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">25000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Expensive"/>
+        <Class IRI="#CostValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#In-line"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#In-line"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Low-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Low-cost"/>
+        <Class IRI="#CostValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medium-cost"/>
+        <Class IRI="#CostValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mercedes"/>
+        <Class IRI="#Berlina"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mercedes"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasCabin"/>
+            <Class IRI="#5-seats"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mercedes"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasWheels"/>
+            <Class IRI="#chrome"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mercedes"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mercedes"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">70000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Motor"/>
+        <Class IRI="#parts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Motorhome"/>
+        <Class IRI="#Vans"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Motorhome"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">42500.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pickup-truck"/>
+        <Class IRI="#Trucks"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pickup-truck"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">90000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rotary"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Rotary"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SUV"/>
+        <Class IRI="#Cars"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SUV"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="#hasPrice"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:float"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#float">20000.0</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Straignt"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Straignt"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Low-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Trucks"/>
+        <Class IRI="#vehicle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Trucks"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasChassis"/>
+            <Class IRI="#truck-chassis"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VEE"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VEE"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vans"/>
+        <Class IRI="#vehicle"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vans"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasChassis"/>
+            <Class IRI="#van-chassis"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Wheels"/>
+        <Class IRI="#parts"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#alloy"/>
+        <Class IRI="#wheel-rim"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#alloy"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Medium-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#bus-frame"/>
+        <Class IRI="#Chassis"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#car-chassis"/>
+        <Class IRI="#Chassis"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#chrome"/>
+        <Class IRI="#wheel-rim"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#chrome"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#high-speed"/>
+        <Class IRI="#tyre"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#high-speed"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#many-seats"/>
+        <Class IRI="#Cabin"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#sporty"/>
+        <Class IRI="#tyre"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#sporty"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#steel"/>
+        <Class IRI="#wheel-rim"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#steel"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Low-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#summer"/>
+        <Class IRI="#tyre"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#summer"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Low-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#touring"/>
+        <Class IRI="#tyre"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#touring"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Low-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#truck-chassis"/>
+        <Class IRI="#Chassis"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#tyre"/>
+        <Class IRI="#Wheels"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#van-chassis"/>
+        <Class IRI="#Chassis"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#wheel-rim"/>
+        <Class IRI="#Wheels"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#winter"/>
+        <Class IRI="#tyre"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#winter"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Medium-cost"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#2-seats"/>
+        <Class IRI="#Cabin"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#5-seats"/>
+        <Class IRI="#Cabin"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#8-seats"/>
+        <Class IRI="#Cabin"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VR&amp;W"/>
+        <Class IRI="#Motor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VR&amp;W"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#isExpensive"/>
+            <Class IRI="#Expensive"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Berlina"/>
+        <Class IRI="#Convertible"/>
+        <Class IRI="#Coupé"/>
+        <Class IRI="#SUV"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Boxer"/>
+        <Class IRI="#In-line"/>
+        <Class IRI="#Rotary"/>
+        <Class IRI="#Straignt"/>
+        <Class IRI="#VEE"/>
+        <Class IRI="#VR&amp;W"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Buses"/>
+        <Class IRI="#Cars"/>
+        <Class IRI="#Trucks"/>
+        <Class IRI="#Vans"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Cabin"/>
+        <Class IRI="#Chassis"/>
+        <Class IRI="#Motor"/>
+        <Class IRI="#Wheels"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Camper"/>
+        <Class IRI="#Commercial"/>
+        <Class IRI="#Motorhome"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Expensive"/>
+        <Class IRI="#Low-cost"/>
+        <Class IRI="#Medium-cost"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#alloy"/>
+        <Class IRI="#chrome"/>
+        <Class IRI="#steel"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#bus-frame"/>
+        <Class IRI="#car-chassis"/>
+        <Class IRI="#truck-chassis"/>
+        <Class IRI="#van-chassis"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#high-speed"/>
+        <Class IRI="#sporty"/>
+        <Class IRI="#summer"/>
+        <Class IRI="#touring"/>
+        <Class IRI="#winter"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#many-seats"/>
+        <Class IRI="#2-seats"/>
+        <Class IRI="#5-seats"/>
+        <Class IRI="#8-seats"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#areWheelsOf"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasCabin"/>
+        <ObjectProperty IRI="#hasPart"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasChassis"/>
+        <ObjectProperty IRI="#hasPart"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasMotor"/>
+        <ObjectProperty IRI="#hasPart"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasWheels"/>
+        <ObjectProperty IRI="#hasPart"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isCabinOf"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isChassisOf"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isMotorOf"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#areWheelsOf"/>
+        <ObjectProperty IRI="#hasWheels"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasCabin"/>
+        <ObjectProperty IRI="#isCabinOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasChassis"/>
+        <ObjectProperty IRI="#isChassisOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasMotor"/>
+        <ObjectProperty IRI="#isMotorOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasPart"/>
+        <ObjectProperty IRI="#isPartOf"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasCabin"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasChassis"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasMotor"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasWheels"/>
+    </FunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasCabin"/>
+        <Class IRI="#vehicle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasChassis"/>
+        <Class IRI="#vehicle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMotor"/>
+        <Class IRI="#vehicle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasPart"/>
+        <Class IRI="#vehicle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasWheels"/>
+        <Class IRI="#vehicle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasCabin"/>
+        <Class IRI="#Cabin"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasChassis"/>
+        <Class IRI="#Chassis"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMotor"/>
+        <Class IRI="#Motor"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasPart"/>
+        <Class IRI="#parts"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasWheels"/>
+        <Class IRI="#Wheels"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isExpensive"/>
+        <Class IRI="#CostValuePartition"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasPrice"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasPrice"/>
+        <Class IRI="#vehicle"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasMaintenanceCostPerYear"/>
+        <DataOneOf>
+            <Literal>High</Literal>
+            <Literal>Low</Literal>
+            <Literal>Medium</Literal>
+        </DataOneOf>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasPrice"/>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
