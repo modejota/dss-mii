@@ -1,9 +1,8 @@
 # Desarrollo de Sistemas Software Basados en Componentes y Servicios
 
-Material desarrollado para la asignatura "Desarrollo de Sistemas Software Basados en Componentes y Servicios" del Máster en Ingeniería Informática de la UGR
+Material desarrollado para la asignatura "Desarrollo de Sistemas Software Basados en Componentes y Servicios" del Máster en Ingeniería Informática de la UGR por José Alberto Gómez García durante el curso 2022-2023
 
 ## Prácticas
----
 
 - Práctica 1. Aplicación Java EE con tecnologías REST, Jersey y JPA
 - Práctica 2. Modelado de procesos de negocio con BPEL 2.0
