@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_products">
+
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="dss.practicas.practica3.fragments.ProductosFragment"
+        android:label="@string/title_productos_bottomBar"
+        tools:layout="@layout/fragment_productos" />
+
+    <fragment
+        android:id="@+id/navigation_carrito"
+        android:name="dss.practicas.practica3.fragments.CarritoFragment"
+        android:label="@string/title_carrito_bottomBar"
+        tools:layout="@layout/fragment_carrito" />
+
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="dss.practicas.practica3.fragments.MapsFragment"
+        android:label="@string/title_maps_bottomBar"
+        tools:layout="@layout/fragment_maps" />
+</navigation>

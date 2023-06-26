@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DSS SHOP - Practica 3</string>
+    <string name="title_productos_bottomBar">Catálogo</string>
+    <string name="title_carrito_bottomBar">Carrito</string>
+    <string name="title_maps_bottomBar">Mapa</string>
+    <string name="product_image_description">Image of the current product</string>
+    <string name="no_products_carrito">No hay productos en el carrito</string>
+
+</resources>
